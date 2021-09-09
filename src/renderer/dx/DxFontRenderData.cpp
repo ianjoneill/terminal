@@ -898,7 +898,7 @@ Microsoft::WRL::ComPtr<IDWriteTextFormat> DxFontRenderData::_BuildTextFormat(con
 {
     Microsoft::WRL::ComPtr<IDWriteTextFormat> format;
     THROW_IF_FAILED(_dwriteFactory->CreateTextFormat(fontInfo.GetFamilyName().data(),
-                                                     nullptr,
+                                                     fontInfo._nearbyCollection.Get(),
                                                      fontInfo.GetWeight(),
                                                      fontInfo.GetStyle(),
                                                      fontInfo.GetStretch(),

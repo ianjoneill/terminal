@@ -49,6 +49,8 @@ namespace Microsoft::Console::Render
         [[nodiscard]] ::Microsoft::WRL::ComPtr<IDWriteFontFace1> ResolveFontFaceWithFallback(gsl::not_null<IDWriteFactory1*> dwriteFactory,
                                                                                              std::wstring& localeName);
 
+        mutable ::Microsoft::WRL::ComPtr<IDWriteFontCollection1> _nearbyCollection;
+
     private:
         [[nodiscard]] ::Microsoft::WRL::ComPtr<IDWriteFontFace1> _FindFontFace(gsl::not_null<IDWriteFactory1*> dwriteFactory,
                                                                                std::wstring& localeName,
@@ -60,8 +62,6 @@ namespace Microsoft::Console::Render
         [[nodiscard]] const Microsoft::WRL::ComPtr<IDWriteFontCollection1>& _NearbyCollection(gsl::not_null<IDWriteFactory1*> dwriteFactory) const;
 
         [[nodiscard]] static std::vector<std::filesystem::path> s_GetNearbyFonts();
-
-        mutable ::Microsoft::WRL::ComPtr<IDWriteFontCollection1> _nearbyCollection;
 
         // The font name we should be looking for
         std::wstring _familyName;
